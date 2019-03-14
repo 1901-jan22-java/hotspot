@@ -18,6 +18,18 @@ public class HotspotApplication {
 			repository.save(
 				new User("John","Smith","jsmith@email.com","password","1")
 			);
+			repository.save(
+				new User("Sarah","Thomson","sthomson@email.com","password","2")
+			);
+			repository.save(
+				new User("Jane","Stewart","jstewart@email.com","password","3")
+			);
+			repository.save(
+				new User("Greg","Custis","gcustis@email.com","password","4")
+			);
+			repository.save(
+				new User("Patricia","Reid","preid@email.com","password","1")
+			);
 		};
 	}
 
