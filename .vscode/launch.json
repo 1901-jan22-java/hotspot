@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - HotspotApplication",
+            "request": "launch",
+            "mainClass": "com.hotspot.app.HotspotApplication",
+            "projectName": "hotspot"
+        }
+    ]
+}
