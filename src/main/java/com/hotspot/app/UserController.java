@@ -1,7 +1,6 @@
 package com.hotspot.app;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +20,10 @@ public class UserController {
     @Autowired
     private UserService uService;
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(
+        value = "/users",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<User>> findAll() {
         return new ResponseEntity<List<User>>(uService.getAll(), HttpStatus.OK);
     }
@@ -34,6 +36,26 @@ public class UserController {
     public ResponseEntity<User> findById(@PathVariable Long id) {
         User u = (User) uService.findById(id);
 		return new ResponseEntity<User>(u, HttpStatus.OK);
+    }
+    
+    @RequestMapping(
+        method=RequestMethod.GET,
+        value="/users/email={email}",
+        produces=MediaType.APPLICATION_JSON_VALUE
+    )
+	public ResponseEntity<User> findByUsername(@PathVariable String email){
+        User u = (User) uService.findByEmail(email);
+		return new ResponseEntity<User>(u, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value="/users", 
+        method=RequestMethod.POST, 
+        consumes=MediaType.APPLICATION_JSON_VALUE, 
+        produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<User> add(@RequestBody User user){
+		User u = uService.add(user);
+		if(u == null) return new ResponseEntity<User>(HttpStatus.CONFLICT);
+		return new ResponseEntity<User>(u, HttpStatus.CREATED);
 	}
 
 }

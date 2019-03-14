@@ -22,7 +22,11 @@ public class UserService {
         Optional<User> u = uRepo.findById(id);
         if(u.isPresent()) return u.get();
         else return null;
-	}
+    }
+    
+    public User findByEmail(String email) {
+        return uRepo.findByEmailLikeIgnoreCase(email);
+    }
 
     public User add(User u) {
 		return uRepo.save(u);
