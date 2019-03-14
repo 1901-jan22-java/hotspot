@@ -14,6 +14,8 @@ public class User {
 	private String email;
 	private String password;
 	private String pref;
+
+	public User(){}
 	
 	public User(String fn, String ln, String email, String password, String pref) {
 		super();
